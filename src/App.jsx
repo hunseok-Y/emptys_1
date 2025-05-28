@@ -1,6 +1,7 @@
 import './App.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 function App() {
 
@@ -34,14 +35,26 @@ function App() {
     }, []);
 
   return (
-      <>
-          <h1>{movies.length}</h1>
-          {movies?.map((movie, index) => (
-              <div key={index}>
-                  <h1>{movie.overview}</h1>
-              </div>
-          ))}
-      </>
+      <Container>
+          <Row>
+              {movies?.map((movie, index) => (
+                  <Col className={"mb-3"} key={index}>
+                      <Card style={{width: "18rem"}}>
+                          <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}></Card.Img>
+                          <Card.Body>
+                              <Card.Title>{movie.original_title.slice(0, 10)}</Card.Title>
+                              <Card.Text>{movie.overview.slice(0, 100)}</Card.Text>
+                              <Card.Text>
+                                  출시일 :
+                                  {movie.release_date}
+                              </Card.Text>
+                          </Card.Body>
+                          <Button variant="primary">Go somewhere</Button>
+                      </Card>
+                  </Col>
+              ))}
+          </Row>
+      </Container>
   )
 }
 
