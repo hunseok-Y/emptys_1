@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import ContainerBox from "./components/ContainerBox.jsx";
-import ItemCard from "./components/ItemCard.jsx";
+import ContainerBox from "../components/ContainerBox.jsx";
+import ItemCard from "../components/ItemCard.jsx";
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
