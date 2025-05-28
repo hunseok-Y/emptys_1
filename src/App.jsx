@@ -1,17 +1,11 @@
 import './App.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
 
     const [name, setName] = useState('Mr. Yang')
-    const [age, setAge] = useState(0)
-    const [movieData, setMovieData] = useState({
-        "userId": 1,
-        "id": 1,
-        "title": "delectus aut autem",
-        "completed": false
-    })
-    const [movies, setMovies] = useState([
+
+    const data = [
         {
             "userId": 1,
             "id": 1,
@@ -42,17 +36,21 @@ function App() {
             "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
             "completed": false
         },
-    ])
+    ]
 
     const changeName = () => {
         setName("HoonSeok")
-        setAge(31)
     }
+
+    const [movies, setMovies] = useState([])
+
+    useEffect(() => {
+        setMovies(data)
+    }, []);
 
   return (
       <>
           <h1>Hello World</h1>
-          <h3>{age}</h3>
           <h2>{name}</h2>
           {movies?.map((movie, index) => (
               <div key={index}>
@@ -60,9 +58,6 @@ function App() {
                   <h2>{movie.completed ? "완료" : "완려되지 않음"}</h2>
               </div>
           ))}
-
-          <h1>{movieData.completed.toString()}</h1>
-
           <button onClick={changeName}>change</button>
       </>
   )
