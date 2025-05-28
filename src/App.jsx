@@ -8,6 +8,7 @@ function App() {
         <>
             <NavMenus/>
             <Tvs/>
+            <Movies/>
         </>
     )
 }
