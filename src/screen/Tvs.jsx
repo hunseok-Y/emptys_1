@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import ItemCard from "../components/ItemCard.jsx";
+import ContainerBox from "../components/ContainerBox.jsx";
 
 const Tvs = () => {
 
@@ -32,24 +34,11 @@ const Tvs = () => {
     }, []);
 
     return (
-        <Container>
-            <Row>
+        <ContainerBox>
                 {tvList?.map((tv, index) => (
-                    <Col className={"mb-3"} key={index}>
-                        <Card style={{ width: '18rem' }} >
-                            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`} />
-                            <Card.Body>
-                                <Card.Title>{tv.name}</Card.Title>
-                                <Card.Text>
-                                    {tv.overview}
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    <ItemCard data={tv} origin={"tv"} key={index}/>
                 ))}
-            </Row>
-        </Container>
+        </ContainerBox>
     );
 };
 

@@ -37,7 +37,7 @@ const Movies = () => {
     return (
         <ContainerBox>
             {movies?.map((movie, index) => (
-                <ItemCard data={movie} key={movie.id}/>
+                <ItemCard data={movie} origin={"movie"} key={index}/>
             ))}
         </ContainerBox>
     )

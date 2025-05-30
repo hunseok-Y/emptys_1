@@ -1,7 +1,11 @@
 import React from 'react';
 import {Button, Card, Col} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
-const ItemCard = ({data}) => {
+const ItemCard = ({data, origin}) => {
+
+    const navigate = useNavigate();
+
     return (
         <Col className={"mb-3"}>
             <Card style={{ width: '18rem' }}>
@@ -13,9 +17,9 @@ const ItemCard = ({data}) => {
                     </Card.Text>
                     <Card.Text>
                         출시일 :
-                        {data.release_date}
+                        {data.release_date ? data.release_date : data.first_air_date}
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary" onClick={() => navigate(`/${origin}/${data.id}`)}>Go Detail</Button>
                 </Card.Body>
             </Card>
         </Col>

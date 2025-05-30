@@ -1,7 +1,11 @@
 import React from 'react';
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 const NavMenus = () => {
+
+    const navigate = useNavigate();
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -9,8 +13,10 @@ const NavMenus = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Movies</Nav.Link>
-                        <Nav.Link href="#link">Tv</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/")}>Movies</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/tv")}>Tv</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/Shop")}>Shop</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/Actor")}>Actor</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
