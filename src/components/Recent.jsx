@@ -1,21 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import axios from "axios";
-import {Button} from "react-bootstrap";
 
-const Detail = () => {
-    const {id} = useParams();
-    const location = useLocation();
+const Recent = () => {
+
+    const {id} = useParams()
+    const location = useLocation()
     const locationTarget = location.pathname
     const isLocation = locationTarget.includes(locationTarget) ? locationTarget : undefined
-    const navigate = useNavigate();
 
     const [detail, setDetail] = useState({});
-
-
-    // 현재 경로 확인 후 true,false로 구별해준다.
-    // console.log("------------------------",location.pathname.includes("tv"))
-
 
     const getDetail = async () => {
         try{
@@ -42,28 +36,18 @@ const Detail = () => {
 
     useEffect(() => {
         getDetail()
+        let storegeIn = localStorage.getItem("location")
+        storegeIn = JSON.parse(storegeIn)
+        storegeIn.push(location)
+        localStorage.setItem('location', JSON.stringify([]))
+
     },[])
 
     return (
-        <div>
-            <h1>{id}</h1>
-            <Button onClick={() => navigate(-1)}>뒤로가기</Button>
-            <br/>
-            <img src={`https://image.tmdb.org/t/p/w500${detail.poster_path}`} alt=""/>
-            <h1>{detail.title ? detail.title : detail.name}</h1>
-            <h3>{detail.overview}</h3>
-            <h3>출시회사</h3>
-            {detail.production_companies?.map((company, index) => (
-                <h4 key={index}>{company.name}</h4>
-            ))}
-            <h3>출시국가</h3>
-            {
-                detail.production_countries?.map((country, index) => (
-                    <h4 key={index}>{country.name}</h4>
-                ))
-            }
-        </div>
+        <>
+            
+        </>
     );
 };
 
-export default Detail;
+export default Recent;
